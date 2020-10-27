@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="homepage.css">
+
+</head>
+
+<body>
+    <!-- This div includes logout button,options button and logo of website  -->
+    <div class="upperBox"></div>
+    <header> Admin name
+        <img src="logo.png" width="100px" height="100px">
+        <a href="options.html"> <input id="options" type="image" src="options.png" width="30px" height="30px"> </a>
+        <a href="adminLogin.html"><input id="logout" type="image" src="logout.png" width="30px" height="45px"></a>
+
+    </header>
+    </div>
+
+    <div id="user">
+        <!--Js codes lists users here-->
+        <h1>Apartment residents: </h1>
+        <table id="users">
+            <tr>
+                <td>Row Number</td>
+                <td>Name and Surname</td>
+                <td>Apartment number</td>
+                <td> Status </td>
+                <td> E- mail</td>
+                <td> Rent Debt</td>
+                <td>Edit User</td>
+                <td>Send Mail</td>
+                <td>Remove User</td>
+            </tr>
+
+
+        </table>
+    </div>
+
+    <script>
+        /* This script lists the users.It is not a dynamic script.For the future here is works with database. 
+         */
+        var names = ["Fatih KARALAR", "Mehmet KARALAR", "Ali TANDOĞAN", "Berat YILMAZ"];
+        var Status = ["Tenant", "Owner"];
+        //This loop creates a table and fills it with user informations
+        for (var i = 0; i < 10; i++) {
+            var randomName = Math.floor(Math.random() * 4);
+            var randomStatus = Math.floor(Math.random() * 2);
+            var tableRef = document.getElementById('users').getElementsByTagName('tbody')[0];
+            var newRow = tableRef.insertRow(tableRef.rows.length);
+            var rowNumbercell = newRow.insertCell(0);
+            var Namecell = newRow.insertCell(1);
+            var aptNoCell = newRow.insertCell(2);
+            var StatusCell = newRow.insertCell(3);
+            var MailCell = newRow.insertCell(4);
+            var RentDebtCell = newRow.insertCell(5);
+            var editButtonCell = newRow.insertCell(6);
+            var mailButtonCell = newRow.insertCell(7);
+            var removeButtonCell = newRow.insertCell(8);
+            rowNumbercell.innerHTML = i;
+            Namecell.innerHTML = names[randomName];
+            aptNoCell.innerHTML = i + 1
+            StatusCell.innerHTML = Status[randomStatus];
+            MailCell.innerHTML = names[randomName].toLocaleLowerCase() + "@hotmail.com.tr";
+            RentDebtCell.innerHTML = 0;
+            editButtonCell.innerHTML = '<button id="editButton">Edit User</button>';
+            mailButtonCell.innerHTML = '<button id="mailButton">Send Mail</button>';
+            removeButtonCell.innerHTML = '<button id="removeButton">Remove User</button>';
+
+        }
+    </script>
+</body>
+
+</html>

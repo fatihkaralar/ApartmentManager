@@ -1,0 +1,91 @@
+/* 
+*@Author Abuzer Fatih KARALAR
+*@Version 25.10.2020
+*/
+
+
+/* Includes css codes for body(font type,background,margin and padding */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #3d3d3d;
+}
+
+
+/* There are css codes of loginForm(position,align,color...  
+ */
+
+.loginForm {
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #3d3d3d;
+    text-align: center;
+}
+
+
+/* This part is title of my form */
+
+.loginForm h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+
+/* This part includes css codes for my username and password inputs */
+
+.loginForm input[type="text"],
+.loginForm input[type="password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+
+/* When user click username or password boxes these codes works.Border color of boxes changes.Also their widht increases */
+
+.loginForm input[type="text"]:focus,
+.loginForm input[type="password"]:focus {
+    width: 280px;
+    border-color: #2ecc71;
+}
+
+
+/* Css codes for Login button. */
+
+.loginForm input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+
+/* When the cursor is on the login button,the login button being green. */
+
+.loginForm input[type="submit"]:hover {
+    background: #2ecc71;
+}
