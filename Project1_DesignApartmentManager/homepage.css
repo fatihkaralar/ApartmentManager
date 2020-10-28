@@ -103,3 +103,11 @@ tr:nth-child(even) {
 tr:hover {
     background-color: mediumseagreen;
 }
+
+#title {
+    background-color: mediumseagreen;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+}

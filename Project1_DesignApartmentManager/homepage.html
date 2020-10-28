@@ -22,8 +22,10 @@
 
     <div id="user">
         <!--Js codes lists users here-->
-        <h1>Apartment residents: </h1>
+        <header id="title">Apartment Residents</header>
+
         <table id="users">
+
             <tr>
                 <td>Row Number</td>
                 <td>Name and Surname</td>
@@ -46,7 +48,7 @@
         var names = ["Fatih KARALAR", "Mehmet KARALAR", "Ali TANDOĞAN", "Berat YILMAZ"];
         var Status = ["Tenant", "Owner"];
         //This loop creates a table and fills it with user informations
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 30; i++) {
             var randomName = Math.floor(Math.random() * 4);
             var randomStatus = Math.floor(Math.random() * 2);
             var tableRef = document.getElementById('users').getElementsByTagName('tbody')[0];
