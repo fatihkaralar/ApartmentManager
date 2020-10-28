@@ -68,20 +68,36 @@ header input[id="logout"]:hover {
     border-radius: 12px;
 }
 
+
+/* When the cursor is on the remove button,the background color of button will be red.
+ */
+
 #removeButton:hover {
     background-color: rgb(247, 132, 123);
     border-radius: 12px;
 }
+
+
+/* When the cursor is on the edit button,the background color of button will be green
+ */
 
 #editButton:hover {
     background-color: lightgreen;
     border-radius: 12px;
 }
 
+
+/* When the cursor is on the mail button,the background color of button will be green
+ */
+
 #mailButton:hover {
     background-color: lightgreen;
     border-radius: 12px;
 }
+
+
+/* CSS codes for Apartment Residents Table
+ */
 
 table {
     font-family: arial, sans-serif;
@@ -103,6 +119,9 @@ tr:nth-child(even) {
 tr:hover {
     background-color: mediumseagreen;
 }
+
+
+/* This part for Title of table for admin homepage. */
 
 #title {
     background-color: mediumseagreen;
