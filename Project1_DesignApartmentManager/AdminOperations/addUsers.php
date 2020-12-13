@@ -68,7 +68,7 @@ if (!isset($_SESSION['username'])) {
             }else{
             	$row=mysqli_fetch_assoc($query);
 
-            	if($countApt!=0||$countMail!=0){//If mail or apt. number that comes from form  exits,then ıt prints an error message and ıt does not add to the database.
+            	if($countApt!=0||$countMail!=0){//If mail or apt. number that comes from form  exists in the database,then ıt prints an error message and ıt does not add to the database.
 
             		$errorMessage="<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>Mail or apt. number  already exits! </p>";
             	}else{
