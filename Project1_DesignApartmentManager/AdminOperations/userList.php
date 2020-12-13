@@ -1,6 +1,10 @@
 <!-- *@Author Abuzer Fatih KARALAR
  *@Version 28.10.2020 
 -->
+<?php
+session_start();
+require_once '../dbconnection/dbconnect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,17 +12,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="../Css/userList.css">
 
 </head>
 
 <body>
+    <?php
+    //Database operations for logged admin using SESSION
+    $username = $_SESSION['username'];
+    $userListSql = "SELECT name FROM admins WHERE username='$username'";
+    $userListQuery = mysqli_query($connect, $userListSql);
+    $row = mysqli_fetch_assoc($userListQuery);
+    ?>
+
     <!-- This div includes logout button,options button and logo of website  -->
     <div class="upperBox"></div>
-    <header> Admin name
-        <img src="logo.png" width="100px" height="100px">
-        <a href="options.html"> <input id="options" type="image" src="options.png" width="30px" height="30px"> </a>
-        <a href="adminLogin.html"><input id="logout" type="image" src="logout.png" width="30px" height="45px"></a>
+    <header> Admin:<?php echo $row['name'];  ?>
+
+        <img src="../Logos/logo.png" width="100px" height="100px">
+        <a href="../options.php"> <input id="options" type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
+        <a href="../Login/adminLogout.php"><input id="logout" type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
 
     </header>
     </div>

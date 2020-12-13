@@ -1,0 +1,52 @@
+.leftside,
+.rightside {
+    height: 100vh;
+    width: 100%;
+}
+
+.leftside {
+    background-color: #39a0c9;
+    padding: 5px;
+}
+
+.rightside {
+    background-color: #09749e;
+    padding: 5px;
+}
+
+@media screen and (min-width: 768px) {
+    .leftside,
+    .rightside {
+        height: 100vh;
+    }
+}
+
+.leftside:hover {
+    background-color: black;
+    cursor: pointer;
+    border-radius: 24px;
+}
+
+.rightside:hover {
+    background-color: black;
+    cursor: pointer;
+    border-radius: 24px;
+}
+
+.leftside a{
+
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 45%
+}
+
+.rightside a{
+
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 45%
+}
