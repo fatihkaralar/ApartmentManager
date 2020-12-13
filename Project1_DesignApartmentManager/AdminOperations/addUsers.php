@@ -5,7 +5,7 @@
 <?php
 session_start();
 require_once '../dbconnection/dbconnect.php'; //Database connection
-if (!isset($_SESSION['username'])) {
+if ($_SESSION['type']!="admin") {
 	header('location: ../nopermission.php');
 }else{
 	$usernameAdmin=$_SESSION['username'];
@@ -75,7 +75,7 @@ if (!isset($_SESSION['username'])) {
             		if (isset($_SESSION['username'])) {
             			
             		
-            		$sql = "INSERT INTO users (userID, username, password, name, aptNo, status, mail,rentDebt,phoneNumber) VALUES ( 'NULL', '$username', '$password', '$name', '$aptNo', '$status', '$mail',$rentDebt,'NULL')";
+            		$sql = "INSERT INTO users (userID, username, password, name, surname, aptNo, status, mail,rentDebt,phoneNumber) VALUES ( 'NULL', '$username', '$password', '$name', '$surname' , '$aptNo', '$status', '$mail',$rentDebt,'NULL')";
             		$result=mysqli_query($connect, $sql);
             		if ($result==0) {
             			$errorMessage="<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'> User could not added </p>";

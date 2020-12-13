@@ -4,8 +4,11 @@
 <?php 
 session_start();
 require_once '../dbconnection/dbconnect.php'; //database connection
-if ($_SESSION['username']!=null) {
+//If an admin tries to access admin login page without exit the system,here redirects the admin to the admin homepage.
+if ($_SESSION['type']=="admin") {
   header('location: ../AdminOperations/adminHomepage.php');
+}elseif($_SESSION['type']=="user"){
+   header('location: ../UserOperations/userHomepage.php');
 }
 
 ?>
@@ -28,7 +31,7 @@ if ($_SESSION['username']!=null) {
 
 $usernameForm=$_POST['username'];//It is username that came from login form.
 $usernamePassword=$_POST['password'];// It is password that came from login form.
-$loginSql="SELECT * from admins WHERE username='$usernameForm'";
+$loginSql="SELECT * FROM admins WHERE username='$usernameForm'";
 $loginQuery=mysqli_query($connect,$loginSql);
 $count=mysqli_num_rows($loginQuery);
 $errorMessage="";
@@ -43,6 +46,7 @@ if (!isset($_SESSION['username'])) {
   $row=mysqli_fetch_assoc($loginQuery);//It fetches a result row as an associative array.
   if (md5($usernamePassword)==$row['password']&&$usernameForm==$row['username']) {
     $_SESSION['username']=$usernameForm;
+    $_SESSION['type']="admin";
     header('location:../AdminOperations/adminHomepage.php');
   }
   else{

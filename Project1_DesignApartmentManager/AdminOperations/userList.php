@@ -4,6 +4,9 @@
 <?php
 session_start();
 require_once '../dbconnection/dbconnect.php';
+if ($_SESSION['type']!="admin") {
+    header('location: ../nopermission.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

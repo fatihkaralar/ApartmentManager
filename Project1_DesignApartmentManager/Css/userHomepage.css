@@ -1,0 +1,70 @@
+body {
+    background-color: #3d3d3d;
+}
+
+header {
+    width: 100%;
+    background-color: #000000;
+    padding: 35px;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    width: 100%;
+}
+
+
+/* css codes for logo of website 
+ */
+
+header img {
+    display: block;
+    float: left;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+
+/* css codes for options button
+ */
+
+header input[id="options"] {
+    display: block;
+    float: right;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 10px;
+}
+
+
+/* When the cursor is on the options button,the background color of button will be green
+ */
+
+header input[id="options"]:hover {
+    background-color: lightgreen;
+    border-radius: 12px;
+}
+
+
+/* Css codes for logout button
+ */
+
+header input[id="logout"] {
+    display: block;
+    float: right;
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+
+/* When the cursor is on the logout button,the background color of button will be green
+ */
+
+header input[id="logout"]:hover {
+    background-color: lightgreen;
+    border-radius: 12px;
+}
