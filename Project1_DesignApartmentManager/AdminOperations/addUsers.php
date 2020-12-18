@@ -1,7 +1,7 @@
  <!--- 
 -Author: Abuzer Fatih KARALAR
 -Version: 29.11.2020
-  --->
+--->
 <?php
 session_start();
 require_once '../dbconnection/dbconnect.php'; //Database connection
@@ -27,15 +27,15 @@ if ($_SESSION['type']!="admin") {
 <body>
 
 	<header> <p id="adminName">Admin:<?php echo $rowAdmin['name']; //It prints the name of logged admin.?></p>
-	<img src="../Logos/logo.png" width="100px" height="100px">
-	<a href="../options.php"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
-	<a href="../Login/adminLogout.php"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
+     <a href="../index.php"> <img src="../Logos/logo.png" width="100px" height="100px"></a> 
+     <a href="../options.php"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
+     <a href="../Login/adminLogout.php"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
 
 
 
 
-	<?php 
-	
+     <?php 
+     
 
 	if (isset($_POST['submit'])) { //Check if submit button clicked.
 		$name=$_POST['name'];
@@ -70,51 +70,51 @@ if ($_SESSION['type']!="admin") {
 
             	if($countApt!=0||$countMail!=0){//If mail or apt. number that comes from form  exists in the database,then ıt prints an error message and ıt does not add to the database.
 
-            		$errorMessage="<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>Mail or apt. number  already exits! </p>";
+            		$errorMessage="<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>Mail or apt. number  already exists! </p>";
             	}else{
             		if (isset($_SESSION['username'])) {
             			
-            		
-            		$sql = "INSERT INTO users (userID, username, password, name, surname, aptNo, status, mail,rentDebt,phoneNumber) VALUES ( 'NULL', '$username', '$password', '$name', '$surname' , '$aptNo', '$status', '$mail',$rentDebt,'NULL')";
-            		$result=mysqli_query($connect, $sql);
-            		if ($result==0) {
-            			$errorMessage="<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'> User could not added </p>";
-            		}else{
-            			$errorMessage="<p style='color:lightgreen;  text-transform: uppercase;font-weight: 300; text-align: center;'> User added successfully. </p>";
-            		}
-            	}
+                      
+                      $sql = "INSERT INTO users (userID, username, password, name, surname, aptNo, status, mail,rentDebt,phoneNumber) VALUES ( 'NULL', '$username', '$password', '$name', '$surname' , '$aptNo', '$status', '$mail',$rentDebt,'NULL')";
+                      $result=mysqli_query($connect, $sql);
+                      if ($result==0) {
+                         $errorMessage="<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'> User could not added </p>";
+                     }else{
+                         $errorMessage="<p style='color:lightgreen;  text-transform: uppercase;font-weight: 300; text-align: center;'> User added successfully. </p>";
+                     }
+                 }
 
-            	}
-            }
-        }
-    }
+             }
+         }
+     }
+ }
 //Email verification function.
-    function test_input($data) {
-    	$data = trim($data);
-    	$data = stripslashes($data);
-    	$data = htmlspecialchars($data);
-    	return $data;
-    }
-    ?>
+ function test_input($data) {
+   $data = trim($data);
+   $data = stripslashes($data);
+   $data = htmlspecialchars($data);
+   return $data;
+}
+?>
 
 
-    <!--- Form for adding a new resident --->
-    <form class="addUsersForm" method="post">
-    	<?php echo $errorMessage; ?>
-    	<h1>Add new resident</h1>
-    	<input id="name" type="text" name="name" placeholder="Name " required>
-    	<input id="surname" type="text" name="surname" placeholder="Surname" required>
-    	<input id="aptNo" type="number" name="aptNo" placeholder="Apartment number" required>
-    	<input id="mail" type="Mail" name="mail" placeholder="Mail" required>
-    	<label for="status"></label>
-    	<select name="status" id="status" required>
-    		<option value="" disabled selected hidden>Status</option>
-    		<option value="Owner" >Owner</option>
-    		<option value="Tenant">Tenant</option>
-    		<input type="submit" name="submit" value="Add">
+<!--- Form for adding a new resident --->
+<form class="addUsersForm" method="post">
+   <?php echo $errorMessage; ?>
+   <h1>Add new resident</h1>
+   <input id="name" type="text" name="name" placeholder="Name " required>
+   <input id="surname" type="text" name="surname" placeholder="Surname" required>
+   <input id="aptNo" type="number" name="aptNo" placeholder="Apartment number" required>
+   <input id="mail" type="Mail" name="mail" placeholder="Mail" required>
+   <label for="status"></label>
+   <select name="status" id="status" required>
+      <option value="" disabled selected hidden>Status</option>
+      <option value="Owner" >Owner</option>
+      <option value="Tenant">Tenant</option>
+      <input type="submit" name="submit" value="Add">
 
 
-    	</form>
-    </body>
+  </form>
+</body>
 
-    </html>
+</html>

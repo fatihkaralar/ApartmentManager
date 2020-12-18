@@ -1,6 +1,13 @@
 <?php 
 session_start();
 require_once '../dbconnection/dbconnect.php';//Database connection
+if (!isset($_SESSION['type'])) { //If someone access the user homepage without session,it is redirected to the login page.
+header('location: ../Login/adminLogin.php');
+}elseif ($_SESSION['type']=="user") { //If a user has somehow accessed the admin page, it is redirected to the login page and the session is terminated.
+	session_unset();
+	session_destroy();
+
+}
 ?>
 <!DOCTYPE html>
 <html>
