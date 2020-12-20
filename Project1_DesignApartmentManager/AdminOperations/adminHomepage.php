@@ -2,7 +2,7 @@
 session_start();
 require_once '../dbconnection/dbconnect.php';//Database connection
 if (!isset($_SESSION['type'])) { //If someone access the user homepage without session,it is redirected to the login page.
-header('location: ../Login/adminLogin.php');
+	header('location: ../Login/adminLogin.php');
 }elseif ($_SESSION['type']=="user") { //If a user has somehow accessed the admin page, it is redirected to the login page and the session is terminated.
 	session_unset();
 	session_destroy();
@@ -26,10 +26,10 @@ header('location: ../Login/adminLogin.php');
 	?>
 	
 	<header> Admin:<?php echo $row['name']; //It prints the name of logged admin.?>
-	<img src="../Logos/logo.png" width="100px" height="100px">
+	<a href="../index.php"><img src="../Logos/logo.png" width="100px" height="100px"></a>
 	<a href="../options.php"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
-	<a href="../Login/adminLogout.php"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
-
+	<a href="../Login/adminLogout.php"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="40px" height="48px"></a>
+	<a href="addExpense.php"><input id="addExpense" name='addExpense' type="image" src="../Logos/addexpense.png" width="45px" height="45px"></a>
 </header>
 
 <div class="row no-gutters" >

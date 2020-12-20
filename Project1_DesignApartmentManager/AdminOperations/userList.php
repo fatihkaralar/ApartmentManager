@@ -33,11 +33,25 @@ if ($_SESSION['type']!="admin") {
     <header> Admin:<?php echo $row['name'];  ?>
     <br>
 
-    <img src="../Logos/logo.png" width="100px" height="100px">
+   <a href="../index.php"> <img src="../Logos/logo.png" width="100px" height="100px"></a>
     <a href="../options.php"> <input id="options" type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
     <a href="../Login/adminLogout.php"><input id="logout" type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
 
+
+    <?php 
+if ($_GET['error']=="debtError") { //If a user have debt,then the method prints an error message.
+    $errorMessage= "<b><p style='color:red; text-transform: uppercase;font-weight: 500; text-align: center;'>You cannot remove users who have not paid their debts </p></b>";
+   echo $errorMessage;
+}elseif ($_GET['isRemoved']=="true") {
+    $errorMessage= "<b><p style='color:mediumseagreen; text-transform: uppercase;font-weight: 500; text-align: center;'>The user removed successfully. </p></b>";
+    echo $errorMessage;
+}
+
+?>
+
+
 </header>
+
 </div>
 <div id="user">
     <!--Js codes lists users here-->
@@ -70,7 +84,7 @@ if ($_SESSION['type']!="admin") {
            <td><?php echo $residentRow['aptNo']; ?></td>
            <td><?php echo $residentRow['status']; ?></td>
            <td><?php echo $residentRow['mail']; ?></td>
-           <td><?php echo $residentRow['rentDebt']; ?></td>
+           <td><?php echo $residentRow['rentDebt']."₺"; ?></td>
            <td><a href="editUser.php?userID=<?php echo $residentRow['userID'] ?>"><button id="editButton">Edit User</button></a> </td>
            <td><a href="mailto:<?php echo $residentRow['mail']?>"> <button id="mailButton">Send Mail</button></a></td>
            <td><a href="removeUser.php?userID=<?php echo $residentRow['userID'] ?>&removeUser=ok"> <button id="removeButton">Remove User</button></a></td>
@@ -86,19 +100,7 @@ if ($_SESSION['type']!="admin") {
 
 </table>
 </div>
-<?php 
-if ($_GET['error']=="debtError") { //If a user have debt,then the method prints an error message.
-   $errorMessage= "<b><p style='color:black; text-transform: uppercase;font-weight: 500; text-align: center;'>You cannot delete users who have not paid their debts </p></b>";
-   echo $errorMessage;
-}elseif ($_GET['isRemoved']=="true") {
-    $errorMessage= "<b><p style='color:black; text-transform: uppercase;font-weight: 500; text-align: center;'>The user removed successfully. </p></b>";
-    echo $errorMessage;
-}
 
-
-
-
-?>
 
 </body>
 

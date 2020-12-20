@@ -17,22 +17,24 @@ if ($_SESSION['type']!="admin") {
 	$userQuery=mysqli_query($connect,$userSql);
 	$userRow=mysqli_fetch_assoc($userQuery);
 
-if ($_GET['removeUser']=="ok"&&$_SESSION['type']=="admin") {//Only admins can remove a user.
-	if ($userRow['rentDebt']==0) {
-		$removeSql="DELETE FROM users WHERE userID='$userID'";
-		$removeQuery=mysqli_query($connect,$removeSql);
-		header('location:userList.php?isRemoved=true');
+	if ($_GET['removeUser']=="ok"&&$_SESSION['type']=="admin") {
+            //Only admins can remove a user.
+		if ($userRow['rentDebt']==0) { 
+			// Users with debts cannot be removed
+			$removeSql="DELETE FROM users WHERE userID='$userID'";
+			$removeQuery=mysqli_query($connect,$removeSql);
+			header('location:userList.php?isRemoved=true');
+		}else{
+
+			header('location:userList.php?error=debtError');
+		}
 	}else{
-		
-		header('location:userList.php?error=debtError');
+		echo "You don't have permission to remove a user";
 	}
-}else{
-	echo "You don't have permission to remove a user";
-}
 
 
 
-?>
+	?>
 
 
 

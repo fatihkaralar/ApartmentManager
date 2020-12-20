@@ -76,7 +76,7 @@ if ($_SESSION['type']!="admin") {
             		$errorMessage="<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>This Apt No is being used by someone else!! </p>";
 
             	}
-            	if ($countMail!=0&$mail!=$editedUserRow['mail']) {
+            	else if ($countMail!=0&$mail!=$editedUserRow['mail']) {
             		//If mail that comes from form  exists in the database,then ıt prints an error message and ıt does not update the mail of user.
             		$errorMessage="<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>This mail is being used by someone else! </p>";
 

@@ -9,12 +9,13 @@ header {
     text-align: center;
     font-size: 25px;
     color: white;
-    width: 100%;
+    
+
 }
 
 
 /* css codes for logo of website 
- */
+*/
 
 header img {
     display: block;
@@ -26,20 +27,21 @@ header img {
 
 
 /* css codes for options button
- */
+*/
 
 header input[id="options"] {
     display: block;
     float: right;
     position: absolute;
-    top: 10px;
+    top: 25px;
     right: 10px;
-    margin: 10px;
+    margin-top: 15px;
+    margin-right: 80px;
 }
 
 
 /* When the cursor is on the options button,the background color of button will be green
- */
+*/
 
 header input[id="options"]:hover {
     background-color: lightgreen;
@@ -48,7 +50,7 @@ header input[id="options"]:hover {
 
 
 /* Css codes for logout button
- */
+*/
 
 header input[id="logout"] {
     display: block;
@@ -56,18 +58,38 @@ header input[id="logout"] {
     position: absolute;
     top: 25px;
     right: 10px;
-    margin-top: 30px;
-    margin-right: 10px;
+    margin-top: 7px;
+    margin-right: 25px;
 }
 
 
 /* When the cursor is on the logout button,the background color of button will be green
- */
+*/
 
 header input[id="logout"]:hover {
     background-color: lightgreen;
     border-radius: 12px;
 }
+header input[id="addExpense"] {
+    display: block;
+    float: right;
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    margin-top: 8px;
+    margin-right: 120px;
+}
+
+
+/* When the cursor is on the logout button,the background color of button will be green
+*/
+
+header input[id="addExpense"]:hover {
+    background-color: lightgreen;
+    border-radius: 12px;
+}
+
+
 
 .leftside,
 .rightside {

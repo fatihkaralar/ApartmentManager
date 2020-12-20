@@ -1,0 +1,174 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #3d3d3d;
+}
+
+
+/* There are css codes of loginForm(position,align,color...  
+*/
+
+.addExpenseForm {
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #002729;
+    text-align: center;
+    border: 5px solid #3DFAFF;
+    border-radius: 12px;
+    box-shadow: 10px 10px black;
+}
+
+
+/* This part is title of my form */
+
+.addExpenseForm h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+
+
+.addExpenseForm input[type="number"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.addExpenseForm input[type="number"]:focus {
+    width: 280px;
+    border-color: #2ecc71;
+}
+.addExpenseForm textarea{
+ resize: none;
+ border: 0;
+ background: none;
+ display: block;
+ margin: 20px auto;
+ text-align: center;
+ border: 2px solid #3498db;
+ padding: 14px 10px;
+ width: 200px;
+ outline: none;
+ color: white;
+ border-radius: 24px;
+ transition: 0.25s;
+
+
+}
+.addExpenseForm textarea:focus{
+   width: 280px;
+   border-color: #2ecc71;
+
+}
+
+.addExpenseForm input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+
+
+/* When the cursor is on the login button,the login button being green. */
+
+.addExpenseForm input[type="submit"]:hover {
+    background: #2ecc71;
+    border-radius: 24px;
+    box-shadow: 8px 8px black;
+}
+
+
+
+header {
+    width: 100%;
+    background-color: #000000;
+    padding: 35px;
+    font-size: 25px;
+    color: white;
+    width: 100%;
+}
+
+header p[id='adminName'] {
+    position: relative;
+    padding-left: 5%;
+}
+
+
+/* css codes for logo of website 
+*/
+
+header img {
+    display: block;
+    float: left;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+
+/* css codes for options button
+*/
+
+header input[id="options"] {
+    display: block;
+    float: right;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 10px;
+}
+
+
+/* When the cursor is on the options button,the background color of button will be green
+*/
+
+header input[id="options"]:hover {
+    background-color: lightgreen;
+    border-radius: 12px;
+}
+
+
+/* Css codes for logout button
+*/
+
+header input[id="logout"] {
+    display: block;
+    float: right;
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+
+/* When the cursor is on the logout button,the background color of button will be green
+*/
+
+header input[id="logout"]:hover {
+    background-color: lightgreen;
+    border-radius: 12px;
+}
