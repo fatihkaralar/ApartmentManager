@@ -21,6 +21,8 @@ if ($_SESSION['type']!="admin") {
             //Only admins can remove a user.
 		if ($userRow['rentDebt']==0) { 
 			// Users with debts cannot be removed
+			$removeHistorySql="DELETE FROM paymenthistory WHERE userID='$userID'";
+			$removeHistoryQuery=mysqli_query($connect,$removeHistorySql);
 			$removeSql="DELETE FROM users WHERE userID='$userID'";
 			$removeQuery=mysqli_query($connect,$removeSql);
 			header('location:userList.php?isRemoved=true');

@@ -9,9 +9,8 @@ header {
     text-align: center;
     font-size: 25px;
     color: white;
-    width: 100%;
+    
 }
-
 
 /* css codes for logo of website 
  */
@@ -32,9 +31,10 @@ header input[id="options"] {
     display: block;
     float: right;
     position: absolute;
-    top: 10px;
+    top: 25px;
     right: 10px;
-    margin: 10px;
+    margin-top: 15px;
+    margin-right: 80px;
 }
 
 
@@ -56,8 +56,8 @@ header input[id="logout"] {
     position: absolute;
     top: 25px;
     right: 10px;
-    margin-top: 30px;
-    margin-right: 10px;
+    margin-top: 7px;
+    margin-right: 25px;
 }
 
 
@@ -67,4 +67,55 @@ header input[id="logout"] {
 header input[id="logout"]:hover {
     background-color: lightgreen;
     border-radius: 12px;
+}
+
+.leftside,
+.rightside {
+    height: 100vh;
+    width: 100%;
+}
+
+.leftside {
+    background-color: #39a0c9;
+    padding: 5px;
+}
+
+.rightside {
+    background-color: #09749e;
+    padding: 5px;
+}
+
+@media screen and (min-width: 768px) {
+    .leftside,
+    .rightside {
+        height: 100vh;
+    }
+}
+
+.leftside:hover {
+    background-color: black;
+    cursor: pointer;
+    border-radius: 24px;
+}
+
+.rightside:hover {
+    background-color: black;
+    cursor: pointer;
+    border-radius: 24px;
+}
+
+.leftside a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 45%
+}
+
+.rightside a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 45%
 }

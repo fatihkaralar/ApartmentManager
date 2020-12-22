@@ -12,6 +12,7 @@ if ($_SESSION['type']!="admin") {
 	$adminSql="SELECT * FROM admins WHERE username='$usernameAdmin'";
 	$adminQuery=mysqli_query($connect,$adminSql);
     $rowAdmin=mysqli_fetch_assoc($adminQuery);     //Name of logged admin comes from the database and pritns to the page.
+    $adminID=$rowAdmin['adminID'];
 }
 ?>
 <!DOCTYPE html>
@@ -27,11 +28,11 @@ if ($_SESSION['type']!="admin") {
 <body>
 
 	<header> <p id="adminName">Admin:<?php echo $rowAdmin['name']; //It prints the name of logged admin.?></p>
-		<a href="../index.php"> <img src="../Logos/logo.png" width="100px" height="100px"></a> 
-		<a href="../options.php"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
-		<a href="../Login/adminLogout.php"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
-
-		<?php 
+		<a href="../index.php" title="Homepage"> <img src="../Logos/logo.png" width="100px" height="100px"></a> 
+		<a href="../options.php?adminID=<?php echo $adminID ?>" title="Edit Informations"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
+		<a href="../Login/adminLogout.php" title="Logout"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="40px" height="48px"></a>
+	</header>
+	<?php 
 
 		if (isset($_POST['submit'])) {   //If submit button clikced then this block works.
 			$adminID=$rowAdmin['adminID'];
@@ -61,27 +62,11 @@ if ($_SESSION['type']!="admin") {
 
 			}
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
 		?>
-
-
-
-
 		<!--- Form for adding a new expense --->
 		<form class="addExpenseForm" method="post">
 			<?php echo $errorMessage; ?>
+			<img id="logo" src="../Logos/logo.png" height="50%" width="50%">
 			<h1>Add new expense</h1>
 			<input id="amount" type="number" name="amount" placeholder="Amount" step="0.001" min="0" required>
 			<textarea id="details" name="details" placeholder="Details of Expense" required></textarea>

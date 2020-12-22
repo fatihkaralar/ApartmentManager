@@ -9,7 +9,7 @@ body {
 /* There are css codes of loginForm(position,align,color...  
 */
 
-.addExpenseForm {
+.editInformationsForm {
     width: 300px;
     padding: 40px;
     position: absolute;
@@ -26,7 +26,7 @@ body {
 
 /* This part is title of my form */
 
-.addExpenseForm h1 {
+.editInformationsForm h1 {
     color: white;
     text-transform: uppercase;
     font-weight: 500;
@@ -34,7 +34,7 @@ body {
 
 
 
-.addExpenseForm input[type="number"] {
+.editInformationsForm input[type="password"] {
     border: 0;
     background: none;
     display: block;
@@ -49,34 +49,30 @@ body {
     transition: 0.25s;
 }
 
-.addExpenseForm input[type="number"]:focus {
+.editInformationsForm input[type="password"]:focus {
     width: 280px;
     border-color: #2ecc71;
 }
-.addExpenseForm textarea{
- resize: none;
- border: 0;
- background: none;
- display: block;
- margin: 20px auto;
- text-align: center;
- border: 2px solid #3498db;
- padding: 14px 10px;
- width: 200px;
- outline: none;
- color: white;
- border-radius: 24px;
- transition: 0.25s;
-
-
-}
-.addExpenseForm textarea:focus{
-   width: 280px;
-   border-color: #2ecc71;
-
+.editInformationsForm input[type="tel"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
 }
 
-.addExpenseForm input[type="submit"] {
+.editInformationsForm input[type="tel"]:focus {
+    width: 280px;
+    border-color: #2ecc71;
+}
+.editInformationsForm input[type="submit"] {
     border: 0;
     background: none;
     display: block;
@@ -94,7 +90,7 @@ body {
 
 /* When the cursor is on the login button,the login button being green. */
 
-.addExpenseForm input[type="submit"]:hover {
+.editInformationsForm input[type="submit"]:hover {
     background: #2ecc71;
     border-radius: 24px;
     box-shadow: 8px 8px black;
@@ -111,7 +107,7 @@ header {
     width: 100%;
 }
 
-header p[id='adminName'] {
+header p[id='adminName'],[id='userName'] {
     position: relative;
     padding-left: 5%;
 }
@@ -136,10 +132,9 @@ header input[id="options"] {
     display: block;
     float: right;
     position: absolute;
-    top: 40px;
+    top: 10px;
     right: 10px;
-    margin-top: 15px;
-    margin-right: 80px;
+    margin: 10px;
 }
 
 
@@ -157,12 +152,12 @@ header input[id="options"]:hover {
 
 header input[id="logout"] {
     display: block;
-   float: right;
-   position: absolute;
-   top: 40px;
-   right: 10px;
-   margin-top: 7px;
-   margin-right: 25px;
+    float: right;
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    margin-top: 30px;
+    margin-right: 10px;
 }
 
 

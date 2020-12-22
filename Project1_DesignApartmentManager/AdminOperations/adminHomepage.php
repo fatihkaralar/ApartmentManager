@@ -20,16 +20,17 @@ if (!isset($_SESSION['type'])) { //If someone access the user homepage without s
 	<?php 
 //Database operations for logged admin using SESSION
 	$username=$_SESSION['username'];
-	$homepageSql="SELECT name FROM admins WHERE username='$username'";
+	$homepageSql="SELECT * FROM admins WHERE username='$username'";
 	$homepageQuery=mysqli_query($connect,$homepageSql);
 	$row=mysqli_fetch_assoc($homepageQuery);
+	$adminID=$row['adminID'];
 	?>
 	
 	<header> Admin:<?php echo $row['name']; //It prints the name of logged admin.?>
-	<a href="../index.php"><img src="../Logos/logo.png" width="100px" height="100px"></a>
-	<a href="../options.php"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
-	<a href="../Login/adminLogout.php"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="40px" height="48px"></a>
-	<a href="addExpense.php"><input id="addExpense" name='addExpense' type="image" src="../Logos/addexpense.png" width="45px" height="45px"></a>
+	<a href="../index.php" title="Homepage"><img src="../Logos/logo.png" width="100px" height="100px"></a>
+	<a href="../options.php?adminID=<?php echo $adminID ?>" title="Edit Informations"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
+	<a href="../Login/adminLogout.php" title="Logout"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="40px" height="48px"></a>
+	<a href="addExpense.php" title="Add New Expense"><input id="addExpense" name='addExpense' type="image" src="../Logos/addexpense.png" width="45px" height="45px"></a>
 </header>
 
 <div class="row no-gutters" >

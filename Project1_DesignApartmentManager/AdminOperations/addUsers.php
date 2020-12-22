@@ -12,6 +12,7 @@ if ($_SESSION['type']!="admin") {
 	$adminSql="SELECT * FROM admins WHERE username='$usernameAdmin'";
     $adminQuery=mysqli_query($connect,$adminSql);
     $rowAdmin=mysqli_fetch_assoc($adminQuery);     //Name of logged admin comes from the database and pritns to the page.
+    $adminID=$rowAdmin['adminID'];
 }
 ?>
 <!DOCTYPE html>
@@ -27,11 +28,11 @@ if ($_SESSION['type']!="admin") {
 <body>
 
 	<header> <p id="adminName">Admin:<?php echo $rowAdmin['name']; //It prints the name of logged admin.?></p>
-       <a href="../index.php"> <img src="../Logos/logo.png" width="100px" height="100px"></a> 
-       <a href="../options.php"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
-       <a href="../Login/adminLogout.php"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
+       <a href="../index.php" title="Homepage"> <img src="../Logos/logo.png" width="100px" height="100px"></a> 
+       <a href="../options.php?adminID=<?php echo $adminID ?>" title="Edit Informations"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
+       <a href="../Login/adminLogout.php" title="Logout"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
       
-
+ </header>
 
 
        <?php 
@@ -104,7 +105,7 @@ function test_input($data) {
  <h1>Add new resident</h1>
  <input id="name" type="text" name="name" placeholder="Name " required>
  <input id="surname" type="text" name="surname" placeholder="Surname" required>
- <input id="aptNo" type="number" name="aptNo" placeholder="Apartment number" required>
+ <input id="aptNo" type="number" name="aptNo" placeholder="Apartment number" max="120" min="1" required>
  <input id="mail" type="Mail" name="mail" placeholder="Mail" required>
  <label for="status"></label>
  <select name="status" id="status" required>

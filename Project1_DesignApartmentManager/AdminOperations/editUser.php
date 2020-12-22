@@ -24,31 +24,26 @@ if ($_SESSION['type']!="admin") {
 <body>
 
 	<header> <p id="adminName">Admin:<?php echo $rowAdmin['name']; //It prints the name of logged admin.?></p>
-		<a href="../index.php">	<img src="../Logos/logo.png" width="100px" height="100px"></a>
-		<a href="../options.php"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
-		<a href="../Login/adminLogout.php"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
+		<a href="../index.php" title="Homepage">	<img src="../Logos/logo.png" width="100px" height="100px"></a>
+		<a href="../options.php" title="Edit Informations"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
+		<a href="../Login/adminLogout.php" title="Logout"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
 		
+    </header>
 
 
+    <?php 
 
-		<?php 
-
-		$userID=$_GET['userID'];
-		$editedUserSql="SELECT*FROM users WHERE userID='$userID'";
-		$editedUserQuery=mysqli_query($connect,$editedUserSql);
-		$editedUserRow=mysqli_fetch_assoc($editedUserQuery);
+    $userID=$_GET['userID'];
+    $editedUserSql="SELECT*FROM users WHERE userID='$userID'";
+    $editedUserQuery=mysqli_query($connect,$editedUserSql);
+    $editedUserRow=mysqli_fetch_assoc($editedUserQuery);
 
 
 	if (isset($_POST['submit'])) { //Check if submit button clicked.
 		
-		$name=$_POST['name'];
-		$surname=$_POST['surname'];
 		$aptNo=$_POST['aptNo'];
-		$rentDebt=0;
 		$status=$_POST['status'];
 		$mail=test_input($_POST["mail"]);
-		$username=strtolower($name).strtolower($surname);
-		$password=md5(strtolower($surname));
 		$errorMessage="";
 		
     // check if e-mail address is well-formed
@@ -86,7 +81,7 @@ if ($_SESSION['type']!="admin") {
             		if ($_SESSION['type']=="admin") {
             			//
 
-            			$sql = "UPDATE users SET name='$name' , surname='$surname', aptNo='$aptNo' , mail='$mail' , username='$username' , password='$password' , status='$status' WHERE userID='$userID' ";
+            			$sql = "UPDATE users SET aptNo='$aptNo' , mail='$mail' , status='$status' WHERE userID='$userID' ";
             			$result=mysqli_query($connect, $sql);
             			if ($result==0) {
             				$errorMessage="<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'> User could not added </p>";
@@ -118,9 +113,7 @@ if ($_SESSION['type']!="admin") {
     <form class="addUsersForm" method="post">
     	<?php echo $errorMessage; ?>
     	<h1>Edit resident</h1>
-    	<input id="name" type="text" name="name" placeholder="Name " value="<?php echo $editedUserRow['name'] ?>" required>
-    	<input id="surname" type="text" name="surname" placeholder="Surname" value="<?php echo $editedUserRow['surname'] ?>" required>
-    	<input id="aptNo" type="number" name="aptNo" placeholder="Apartment number" value="<?php echo $editedUserRow['aptNo'] ?>" required>
+    	<input id="aptNo" title="Apartment number" type="number" name="aptNo" placeholder="Apartment number" max="120" min="1" value="<?php echo $editedUserRow['aptNo'] ?>"  required>
     	<input id="mail" type="Mail" name="mail" placeholder="Mail" value="<?php echo $editedUserRow['mail'] ?>" required>
     	<label for="status"></label>
     	<select name="status" id="status" required>
