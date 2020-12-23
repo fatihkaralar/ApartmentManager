@@ -100,7 +100,7 @@ function test_input($data) {
 
 
 <!--- Form for adding a new resident --->
-<form class="addUsersForm" method="post">
+<form class="addUsersForm" method="post" autocomplete="off">
  <?php echo $errorMessage; ?>
  <h1>Add new resident</h1>
  <input id="name" type="text" name="name" placeholder="Name " required>

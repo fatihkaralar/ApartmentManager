@@ -15,7 +15,7 @@ if ($_SESSION['type']!="user") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Payments</title>
-  <link rel="stylesheet" href="../Css/paymentHistory.css">
+  <link rel="stylesheet" href="../Css/expensesList.css">
 
 </head>
 
@@ -40,35 +40,44 @@ if ($_SESSION['type']!="user") {
 </header>
 
 </div>
-<div id="payments">
+<div id="expenses">
 
-  <header id="title">Payment History</header>
+  <header id="title">Expenses List</header>
 
-  <table id="payments">
+  <table id="expenses">
 
     <tr>
       <th>Row Number</th>
-      <th>Name and Surname</th>
-      <th>Payment Amount</th>
+      <th>Admin Name</th>
+      <th>Admin Phone Number</th>
+      <th>Amount</th>
       <th>Details</th>
-      <th>Payment Date</th>
+      <th>Date of Upload</th>
 
 
     </tr>
     <?php 
-    $paymentsSql="SELECT*FROM paymenthistory WHERE userID='$userID'"; 
-    $paymentsQuery=mysqli_query($connect,$paymentsSql);
+    $expensesSql="SELECT*FROM expenses "; 
+    $expensesQuery=mysqli_query($connect,$expensesSql);
     $counter=0;
-        while ($paymentsRow=mysqli_fetch_assoc($paymentsQuery)) { //It lists all payments and details for logged resident.
+        while ($expensesRow=mysqli_fetch_assoc($expensesQuery)) { //It lists all expenses and details for logged resident.
           $counter++;
+          $expenseID=$expensesRow['expenseID'];
+          $adminID=$expensesRow['adminID'];
+          $adminSql="SELECT * FROM admins WHERE adminID='$adminID'";
+          $adminQuery=mysqli_query($connect,$adminSql);
+          $adminRow=mysqli_fetch_assoc($adminQuery);
+
+
           ?>
 
           <tr>
            <td><?php echo $counter; ?></td>
-           <td><?php echo ucfirst($rowUser['name'])." ".strtoupper($rowUser['surname']); ?></td>
-           <td><?php echo $paymentsRow['amount']."₺"; ?></td>
-           <td><?php echo $paymentsRow['details']; ?></td>
-           <td><?php  echo  $paymentsRow['currentdate']; ?></td>
+           <td><?php echo $adminRow['name']; ?></td>
+           <td><?php echo $adminRow['phoneNumber']; ?></td>
+           <td><?php echo $expensesRow['amount']."₺"; ?></td>
+           <td><?php echo $expensesRow['details']; ?></td>
+           <td><?php echo  $expensesRow['currentdate']; ?></td>
          </tr>
 
 
