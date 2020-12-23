@@ -15,7 +15,7 @@ if ($_SESSION['type']!="user") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Payments</title>
-  <link rel="stylesheet" href="../Css/paymentHistory.css">
+  <link rel="stylesheet" href="../Css/userList.css">
 
 </head>
 

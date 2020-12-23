@@ -45,24 +45,7 @@ header input[id="options"]:hover {
     background-color: lightgreen;
     border-radius: 12px;
 }
-header input[id="expenses"] {
-    display: block;
-    float: right;
-    position: absolute;
-    top: 25px;
-    right: 60px;
-    margin-top: 15px;
-    margin-right: 80px;
-}
 
-
-/* When the cursor is on the options button,the background color of button will be green
- */
-
-header input[id="expenses"]:hover {
-    background-color: lightgreen;
-   
-}
 
 /* Css codes for logout button
  */

@@ -70,7 +70,7 @@ header('location: userLogin.php?error=true');
     --It takes username and password from user.
   -->
   <div class="loginDiv">
-    <form class="loginForm" action="" method="post" autocomplete="off">
+    <form class="loginForm" action="" method="post">
       <?php 
       if ($_GET['error']=="true") {
        $errorMessage= "<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>A user or admin is already logged into the system.The session ended automatically!</p>";

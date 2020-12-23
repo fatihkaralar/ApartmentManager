@@ -34,7 +34,6 @@ if (!isset($_SESSION['type'])) { //If someone access the user homepage without s
 	<img src="../Logos/logo.png" width="100px" height="100px">
 	<a href="../options.php?userID=<?php echo $userID ?>" title="Edit Informations"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
 	<a href="../Login/userLogout.php" title="Logout"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="40px" height="48px"></a>
-	<a href="expensesList.php?userID=<?php echo $userID ?>" title="Show expenses"><input id="expenses" type="image" name="expenses" src="../Logos/expenses.png" width="27px" height="30px"></a>
 </header>
 <div class="row no-gutters" >
 	<div class="col-md-6 no-gutters">

@@ -44,7 +44,7 @@ if ($_SESSION['type']!="user") {
 			$currentDate=date("Y/m/d"); 
 			$details=$_POST['details'];
 			$newRentDebt=$rowUser['rentDebt']-$amount;
-			
+			$errorMessage= "<b><p style='color:green; text-transform: uppercase;font-weight: 500; text-align: center;'>Payment successfully completed</p></b>";
 
 
 			if ($_SESSION['type']=="user") { //If logged user is  resident then resident can pay.Also the resident can type an amount to pay.
@@ -59,55 +59,30 @@ if ($_SESSION['type']!="user") {
 
 							$userSql="UPDATE users SET rentDebt='$newRentDebt' WHERE userID='$userID'";
 							$userQuery=mysqli_query($connect,$userSql);
-							header('Location: paymentTransactions.php?userID='.$userID.'&error=noerror');//No error message will be sent if the payment is completed successfully
 						}else{
-							
-							header('Location: paymentTransactions.php?userID='.$userID.'&error=invalidpaymentamount'); //If user tries to enter an amount higher that debt then invalid payment amount error will be sent.
+							$errorMessage= "<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>Invalid Payment Amount</p>";
 						}
 
 					}
 					else{
-						header('Location: paymentTransactions.php?userID='.$userID.'&error=nodebt');//If the user has no debt, nodebt error will be sent.
-						
+						$errorMessage= "<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>You have no debt </p>";
 					}
 
 
 				}else{
-					header('Location: paymentTransactions.php?userID='.$userID.'&error=wrongpassword');// If username or password is wrong,wrong password error will be sent.
+					$errorMessage= "<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>Wrong password or username! </p>";
 				}
 			}
 		}
 		?>
 		<!--- Form for payment --->
-		<form class="paymentForm" method="post" autocomplete="off">
-			<?php  
-			//The error is printed according to the error message from the form.
-			if ($_GET['error']=="noerror") {
-				$errorMessage= "<p style='color:green;  text-transform: uppercase;font-weight: 300; text-align: center;'>Payment successfully completed. </p>";
-			}elseif ($_GET['error']=="invalidpaymentamount") {
-
-				$errorMessage= "<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>Invalid Payment Amount</p>";
-
-			}elseif ($_GET['error']=="nodebt") {
-
-				$errorMessage= "<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>You have no debt! </p>";
-
-			}elseif ($_GET['error']=="wrongpassword") {
-
-				$errorMessage= "<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'>Wrong password or username! </p>";
-
-			}
-
-			echo $errorMessage;
-
-
-
-			?>
+		<form class="paymentForm" method="post">
+			<?php echo $errorMessage; ?>
 			<img id="logo" src="../Logos/logo.png" height="50%" width="50%">
 			<h1>Payment</h1>
-			<input id="amount" title="Please enter amount" type="number" name="amount" placeholder="Amount" step="0.00001" min="0" max="<?php echo $rowUser['rentDebt']; ?>" required>
+			<input id="amount" title="Please enter amount" type="number" name="amount" placeholder="Amount" step="0.001" min="0" max="<?php echo $rowUser['rentDebt']; ?>" required>
 			<textarea id="details" name="details" placeholder="Details of Payment" required></textarea>
-			<input  type="text" title="Enter your username" autocomplete="off" name="username" placeholder="Username" required>
+			<input  type="text" title="Enter your username" name="username" placeholder="Username" required>
 			<input  type="password" title="Enter your password" name="password" placeholder="Password" required>
 			<input type="submit" name="submit" value="Pay">
 
