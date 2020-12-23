@@ -68,10 +68,7 @@ header input[id="logout"]:hover {
     border-radius: 12px;
 }
 
-
-
-
-/* CSS codes for Apartment Residents Table
+/* CSS codes for expenseslist table
  */
 
 table {
@@ -96,7 +93,7 @@ tr:hover {
 }
 
 
-/* This part for Title of table for admin homepage. */
+/* This part for Title of table.. */
 
 #title {
     background-color: mediumseagreen;

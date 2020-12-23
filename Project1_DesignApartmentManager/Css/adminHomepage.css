@@ -81,7 +81,7 @@ header input[id="addExpense"] {
 }
 
 
-/* When the cursor is on the logout button,the background color of button will be green
+/* When the cursor is on the addExpense button,the background color of button will be green
 */
 
 header input[id="addExpense"]:hover {

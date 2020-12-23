@@ -6,7 +6,7 @@ body {
 }
 
 
-/* There are css codes of loginForm(position,align,color...  
+/* There are css codes of addUsersForm(position,align,color...)  
  */
 
 .addUsersForm {
@@ -107,7 +107,7 @@ body {
 }
 
 
-/* When the cursor is on the login button,the login button being green. */
+/* When the cursor is on the submit button,the submit button being green. */
 
 .addUsersForm input[type="submit"]:hover {
     background: #2ecc71;
