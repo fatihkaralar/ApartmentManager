@@ -72,8 +72,13 @@ if ($_SESSION['type']!="user") {
         	<?php 
         } 
         ?>
-
+   
     </table>
+    <?php if ($counter!=0) {
+    
+     ?>
+  <p ><font size="5">Click  <a href="paymentTransactions.php?userID=<?php echo $userID ?>" >here</a> to pay all debts.</font></p>
+<?php } ?>
 </div>
 
 

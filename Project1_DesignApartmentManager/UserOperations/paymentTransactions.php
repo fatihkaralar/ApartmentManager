@@ -65,17 +65,37 @@ if ($_SESSION['type']!="user") {
 
 			if ($_SESSION['type']=="user") { //If logged user is  resident then resident can pay.Also the resident can type an amount to pay.
 				if ($username==$rowUser['username']&&$password==$rowUser['password']) { //If username and password are correct then the residen can pay.
+					if(isset($debtID)){
 
-
-					$sqlUpdate="UPDATE  debts SET isPaid=1 WHERE debtID='$debtID'";
-					$updateResult=mysqli_query($connect,$sqlUpdate);
-					$sql = "INSERT INTO paymenthistory (paymentID, userID,debtID, amount, details, currentdate) VALUES ( 'NULL', '$userID','$debtID', '$amount',  '$details' , '$currentDate')";
-					$result=mysqli_query($connect, $sql);
+						$sqlUpdate="UPDATE  debts SET isPaid=1 WHERE debtID='$debtID'";
+						$updateResult=mysqli_query($connect,$sqlUpdate);
+						$sql = "INSERT INTO paymenthistory (paymentID, userID,debtID, amount, details, currentdate) VALUES ( 'NULL', '$userID','$debtID', '$amount',  '$details' , '$currentDate')";
+						$result=mysqli_query($connect, $sql);
 
 
 						header('Location: paymentTransactions.php?userID='.$userID.'&error=noerror');//No error message will be sent if the payment is completed successfully
 					}else{
+						
+						$sqlSelect="SELECT*FROM debts WHERE userID='$userID' AND isPaid=0";
+						$sqlResult=mysqli_query($connect,$sqlSelect);
+						$sqlUpdateAll="UPDATE  debts SET isPaid=1 WHERE userID='$userID'";
+						$updateResultAll=mysqli_query($connect,$sqlUpdateAll);
+						while ($sqlRow=mysqli_fetch_assoc($sqlResult)) {
+							echo "While çalıştı";
+							$debtIDAll=$sqlRow['debtID'];
+							$amountAll=$sqlRow['amount'];
+							$detailsAll=$sqlRow['details'];
+							$sqlHistory = "INSERT INTO paymenthistory (paymentID, userID,debtID, amount, details, currentdate) VALUES ( 'NULL', '$userID','$debtIDAll', '$amountAll',  '$detailsAll' , '$currentDate')";
+							$resultHistory=mysqli_query($connect, $sqlHistory);
+
+						}
+                      header('Location: paymentTransactions.php?userID='.$userID.'&error=noerror');
+
+					}
+				}elseif(isset($debtID)){
 					header('Location: paymentTransactions.php?userID='.$userID.'&error=wrongpassword&debtID='.$debtID);// If username or password is wrong,wrong password error will be sent.
+				}else{
+					header('Location: paymentTransactions.php?userID='.$userID.'&error=wrongpassword');
 				}
 			}
 		}
