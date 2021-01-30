@@ -171,13 +171,13 @@ header input[id="options"]:hover {
 */
 
 header input[id="logout"] {
-   display: block;
-   float: right;
-   position: absolute;
-   top: 40px;
-   right: 10px;
-   margin-top: 7px;
-   margin-right: 25px;
+ display: block;
+ float: right;
+ position: absolute;
+ top: 40px;
+ right: 10px;
+ margin-top: 7px;
+ margin-right: 25px;
 }
 
 
@@ -190,13 +190,13 @@ header input[id="logout"]:hover {
 }
 header input[id="history"]{
 
-   display: block;
-   float: right;
-   position: absolute;
-   top: 44px;
-   right: 10px;
-   margin-top: 8px;
-   margin-right: 130px;
+ display: block;
+ float: right;
+ position: absolute;
+ top: 44px;
+ right: 10px;
+ margin-top: 8px;
+ margin-right: 130px;
 }
 header input[id="history"]:hover{
     background-color: lightgreen;
@@ -204,24 +204,24 @@ header input[id="history"]:hover{
 
 }
 .paymentForm textarea{
- resize: none;
- border: 0;
- background: none;
- display: block;
- margin: 20px auto;
- text-align: center;
- border: 2px solid #3498db;
- padding: 14px 10px;
- width: 200px;
- outline: none;
- color: white;
- border-radius: 24px;
- transition: 0.25s;
+   resize: none;
+   border: 0;
+   background: none;
+   display: block;
+   margin: 20px auto;
+   text-align: center;
+   border: 2px solid #3498db;
+   padding: 14px 10px;
+   width: 200px;
+   outline: none;
+   color: white;
+   border-radius: 24px;
+   transition: 0.25s;
 
 
 }
 .paymentForm textarea:focus{
-   width: 280px;
-   border-color: #2ecc71;
+ width: 280px;
+ border-color: #2ecc71;
 
 }

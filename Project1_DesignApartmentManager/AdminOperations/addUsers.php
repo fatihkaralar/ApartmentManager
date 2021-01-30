@@ -10,39 +10,38 @@ if ($_SESSION['type']!="admin") {
 }else{
 	$usernameAdmin=$_SESSION['username'];
 	$adminSql="SELECT * FROM admins WHERE username='$usernameAdmin'";
-    $adminQuery=mysqli_query($connect,$adminSql);
+  $adminQuery=mysqli_query($connect,$adminSql);
     $rowAdmin=mysqli_fetch_assoc($adminQuery);     //Name of logged admin comes from the database and pritns to the page.
     $adminID=$rowAdmin['adminID'];
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
+  }
+  ?>
+  <!DOCTYPE html>
+  <html lang="en">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Add Residents</title>
-	<link rel="stylesheet" href="../Css/addUsers.css">
-</head>
+  <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Add Residents</title>
+   <link rel="stylesheet" href="../Css/addUsers.css">
+ </head>
 
-<body>
+ <body>
 
-	<header> <p id="adminName">Admin:<?php echo $rowAdmin['name']; //It prints the name of logged admin.?></p>
-       <a href="../index.php" title="Homepage"> <img src="../Logos/logo.png" width="100px" height="100px"></a> 
-       <a href="../options.php?adminID=<?php echo $adminID ?>" title="Edit Informations"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
-       <a href="../Login/adminLogout.php" title="Logout"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
-      
- </header>
+   <header> <p id="adminName">Admin:<?php echo $rowAdmin['name']; //It prints the name of logged admin.?></p>
+     <a href="../index.php" title="Homepage"> <img src="../Logos/logo.png" width="100px" height="100px"></a> 
+     <a href="../options.php?adminID=<?php echo $adminID ?>" title="Edit Informations"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
+     <a href="../Login/adminLogout.php" title="Logout"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
+     
+   </header>
 
 
-       <?php 
+   <?php 
 
 
 	if (isset($_POST['submit'])) { //Check if submit button clicked.
 		$name=$_POST['name'];
 		$surname=$_POST['surname'];
 		$aptNo=$_POST['aptNo'];
-		$rentDebt=0;
 		$status=$_POST['status'];
 		$mail=test_input($_POST["mail"]);
 		$username=strtolower($name).strtolower($surname);
@@ -76,46 +75,46 @@ if ($_SESSION['type']!="admin") {
             		if (isset($_SESSION['username'])) {
             			
 
-                      $sql = "INSERT INTO users (userID, username, password, name, surname, aptNo, status, mail,rentDebt,phoneNumber) VALUES ( 'NULL', '$username', '$password', '$name', '$surname' , '$aptNo', '$status', '$mail',$rentDebt,'NULL')";
-                      $result=mysqli_query($connect, $sql);
-                      if ($result==0) {
-                       $errorMessage="<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'> User could not added </p>";
-                   }else{
-                       $errorMessage="<p style='color:lightgreen;  text-transform: uppercase;font-weight: 300; text-align: center;'> User added successfully. </p>";
-                   }
+                  $sql = "INSERT INTO users (userID, username, password, name, surname, aptNo, status, mail,phoneNumber) VALUES ( 'NULL', '$username', '$password', '$name', '$surname' , '$aptNo', '$status', '$mail','NULL')";
+                  $result=mysqli_query($connect, $sql);
+                  if ($result==0) {
+                   $errorMessage="<p style='color:red;  text-transform: uppercase;font-weight: 300; text-align: center;'> User could not added </p>";
+                 }else{
+                   $errorMessage="<p style='color:lightgreen;  text-transform: uppercase;font-weight: 300; text-align: center;'> User added successfully. </p>";
+                 }
                }
 
+             }
            }
+         }
        }
-   }
-}
 //Email verification function.
-function test_input($data) {
- $data = trim($data);
- $data = stripslashes($data);
- $data = htmlspecialchars($data);
- return $data;
-}
-?>
+       function test_input($data) {
+         $data = trim($data);
+         $data = stripslashes($data);
+         $data = htmlspecialchars($data);
+         return $data;
+       }
+       ?>
 
 
-<!--- Form for adding a new resident --->
-<form class="addUsersForm" method="post" autocomplete="off">
- <?php echo $errorMessage; ?>
- <h1>Add new resident</h1>
- <input id="name" type="text" name="name" placeholder="Name " required>
- <input id="surname" type="text" name="surname" placeholder="Surname" required>
- <input id="aptNo" type="number" name="aptNo" placeholder="Apartment number" max="120" min="1" required>
- <input id="mail" type="Mail" name="mail" placeholder="Mail" required>
- <label for="status"></label>
- <select name="status" id="status" required>
-  <option value="" disabled selected hidden>Status</option>
-  <option value="Owner" >Owner</option>
-  <option value="Tenant">Tenant</option>
-  <input type="submit" name="submit" value="Add">
+       <!--- Form for adding a new resident --->
+       <form class="addUsersForm" method="post" autocomplete="off">
+         <?php echo $errorMessage; ?>
+         <h1>Add new resident</h1>
+         <input id="name" type="text" name="name" placeholder="Name " required>
+         <input id="surname" type="text" name="surname" placeholder="Surname" required>
+         <input id="aptNo" type="number" name="aptNo" placeholder="Apartment number" max="120" min="1" required>
+         <input id="mail" type="Mail" name="mail" placeholder="Mail" required>
+         <label for="status"></label>
+         <select name="status" id="status" required>
+          <option value="" disabled selected hidden>Status</option>
+          <option value="Owner" >Owner</option>
+          <option value="Tenant">Tenant</option>
+          <input type="submit" name="submit" value="Add">
 
 
-</form>
-</body>
+        </form>
+      </body>
 
-</html>
+      </html>

@@ -41,10 +41,10 @@ if ($_SESSION['type']!="admin") {
 
   <?php 
 if ($_GET['error']=="debtError") { //If a user have debt,then the method prints an error message.
-  $errorMessage= "<b><p style='color:red; text-transform: uppercase;font-weight: 500; text-align: center;'>You cannot remove users who have not paid their debts </p></b>";
+  $errorMessage= "<b><p style='color:red; text-transform: uppercase;font-weight: 500; text-align: center;'>You cannot delete users who have not paid their debts </p></b>";
   echo $errorMessage;
 }elseif ($_GET['isRemoved']=="true") {
-  $errorMessage= "<b><p style='color:mediumseagreen; text-transform: uppercase;font-weight: 500; text-align: center;'>The user removed successfully. </p></b>";
+  $errorMessage= "<b><p style='color:mediumseagreen; text-transform: uppercase;font-weight: 500; text-align: center;'>The user deleted successfully. </p></b>";
   echo $errorMessage;
 }
 
@@ -67,10 +67,11 @@ if ($_GET['error']=="debtError") { //If a user have debt,then the method prints 
       <th> Status </th>
       <th> E- mail</th>
       <th>Phone Number</th>
-      <th> Rent Debt</th>
+      <th> Unpaid Debt</th>
+      <th>Paid Debt</th>
       <th>Edit User</th>
       <th>Send Mail</th>
-      <th>Remove User</th>
+      <th>Delete User</th>
     </tr>
     <?php 
     $residentsSql="SELECT*FROM users ORDER BY aptNo";
@@ -78,6 +79,13 @@ if ($_GET['error']=="debtError") { //If a user have debt,then the method prints 
     $counter=0;
         while ($residentRow=mysqli_fetch_assoc($residentQuery)) { //It list all residents.
           $counter++;
+          $userID=$residentRow['userID'];
+          $debtSql="SELECT sum(amount) AS total FROM debts WHERE userID='$userID' AND isPaid=0";
+          $debtQuery=mysqli_query($connect,$debtSql);
+          $debtRow=mysqli_fetch_assoc($debtQuery);
+          $paidDebtSql="SELECT sum(amount) AS total FROM debts WHERE userID='$userID' AND isPaid=1";
+          $paidDebtQuery=mysqli_query($connect,$paidDebtSql);
+          $paidDebtRow=mysqli_fetch_assoc($paidDebtQuery);
           ?>
 
           <tr>
@@ -92,24 +100,34 @@ if ($_GET['error']=="debtError") { //If a user have debt,then the method prints 
            }else {
              echo "Not specified";
            } ?></td>
-           <td><?php echo $residentRow['rentDebt']."₺"; ?></td>
-           <td><a href="editUser.php?userID=<?php echo $residentRow['userID'] ?>"><button id="editButton">Edit User</button></a> </td>
-           <td><a href="mailto:<?php echo $residentRow['mail']?>"> <button id="mailButton">Send Mail</button></a></td>
-           <td><a href="removeUser.php?userID=<?php echo $residentRow['userID'] ?>&removeUser=ok"> <button id="removeButton">Remove User</button></a></td>
+           <td><?php 
+           if (!isset($debtRow['total'])) {
+            echo "0₺";
+          }else{
+           echo $debtRow['total']."₺";
+         } ?></td>
+         <td><?php   if (!isset($paidDebtRow['total'])) {
+          echo "0₺";
+        }else{
+         echo $paidDebtRow['total']."₺";
+       } ?> </td>
+       <td><a href="editUser.php?userID=<?php echo $residentRow['userID'] ?>"><button id="editButton">Edit User</button></a> </td>
+       <td><a href="mailto:<?php echo $residentRow['mail']?>"> <button id="mailButton">Send Mail</button></a></td>
+       <td><a href="removeUser.php?userID=<?php echo $residentRow['userID'] ?>&removeUser=ok"> <button id="removeButton">Delete User</button></a></td>
 
 
 
 
 
-         </tr>
+     </tr>
 
 
-       <?php } ?>
+   <?php } ?>
 
-     </table>
-   </div>
+ </table>
+</div>
 
 
- </body>
+</body>
 
- </html>
+</html>

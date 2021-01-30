@@ -79,8 +79,8 @@ header('location: userLogin.php?error=true');
      <img id="logo" src="../Logos/logo.png" height="50%" width="50%">
 
      <h1>Login</h1>
-     <input id="username" type="text" name="username" placeholder="Username">
-     <input id="password" type="password" name="password" placeholder="Password">
+     <input id="username" type="text" name="username" placeholder="Username" required>
+     <input id="password" type="password" name="password" placeholder="Password" required>
      <input type="submit" name="submit" value="Login">
 
    </form>

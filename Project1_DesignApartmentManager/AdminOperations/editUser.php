@@ -8,6 +8,7 @@ if ($_SESSION['type']!="admin") {
 	$adminSql="SELECT * FROM admins WHERE username='$usernameAdmin'";
 	$adminQuery=mysqli_query($connect,$adminSql);
     $rowAdmin=mysqli_fetch_assoc($adminQuery);     //Name of logged admin comes from the database and pritns to the page.
+    $adminID=$rowAdmin['adminID'];
 }
 ?>
 
@@ -25,7 +26,7 @@ if ($_SESSION['type']!="admin") {
 
 	<header> <p id="adminName">Admin:<?php echo $rowAdmin['name']; //It prints the name of logged admin.?></p>
 		<a href="../index.php" title="Homepage">	<img src="../Logos/logo.png" width="100px" height="100px"></a>
-		<a href="../options.php" title="Edit Informations"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
+		<a href="../options.php?adminID=<?php echo $adminID ?>" title="Edit Informations"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
 		<a href="../Login/adminLogout.php" title="Logout"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="30px" height="45px"></a>
 		
     </header>

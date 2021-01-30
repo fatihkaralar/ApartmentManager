@@ -13,7 +13,7 @@ header {
 
 
 /* css codes for logo of website 
- */
+*/
 
 header img {
     display: block;
@@ -25,7 +25,7 @@ header img {
 
 
 /* css codes for options button
- */
+*/
 
 header input[id="options"] {
     display: block;
@@ -38,7 +38,7 @@ header input[id="options"] {
 
 
 /* When the cursor is on the options button,the background color of button will be green
- */
+*/
 
 header input[id="options"]:hover {
     background-color: lightgreen;
@@ -47,7 +47,7 @@ header input[id="options"]:hover {
 
 
 /* Css codes for logout button
- */
+*/
 
 header input[id="logout"] {
     display: block;
@@ -61,7 +61,7 @@ header input[id="logout"] {
 
 
 /* When the cursor is on the logout button,the background color of button will be green
- */
+*/
 
 header input[id="logout"]:hover {
     background-color: lightgreen;
@@ -69,7 +69,7 @@ header input[id="logout"]:hover {
 }
 
 /* CSS codes for expenseslist table
- */
+*/
 
 table {
     font-family: arial, sans-serif;
@@ -101,4 +101,9 @@ tr:hover {
     text-align: center;
     font-size: 30px;
     padding: 20px;
+}
+
+#payButton:hover {
+    background-color: lightgreen;
+    border-radius: 12px;
 }

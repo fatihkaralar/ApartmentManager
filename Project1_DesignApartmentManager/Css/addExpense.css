@@ -54,25 +54,25 @@ body {
     border-color: #2ecc71;
 }
 .addExpenseForm textarea{
- resize: none;
- border: 0;
- background: none;
- display: block;
- margin: 20px auto;
- text-align: center;
- border: 2px solid #3498db;
- padding: 14px 10px;
- width: 200px;
- outline: none;
- color: white;
- border-radius: 24px;
- transition: 0.25s;
+   resize: none;
+   border: 0;
+   background: none;
+   display: block;
+   margin: 20px auto;
+   text-align: center;
+   border: 2px solid #3498db;
+   padding: 14px 10px;
+   width: 200px;
+   outline: none;
+   color: white;
+   border-radius: 24px;
+   transition: 0.25s;
 
 
 }
 .addExpenseForm textarea:focus{
-   width: 280px;
-   border-color: #2ecc71;
+ width: 280px;
+ border-color: #2ecc71;
 
 }
 
@@ -157,12 +157,12 @@ header input[id="options"]:hover {
 
 header input[id="logout"] {
     display: block;
-   float: right;
-   position: absolute;
-   top: 40px;
-   right: 10px;
-   margin-top: 7px;
-   margin-right: 25px;
+    float: right;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    margin-top: 7px;
+    margin-right: 25px;
 }
 
 

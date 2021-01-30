@@ -52,9 +52,8 @@ if ($_SESSION['type']!="admin") {
 
 				while ($userListRow=mysqli_fetch_assoc($userListQuery)) { // The expense amount is added to all users
 					$userID=$userListRow['userID'];
-					$rentDebt=$userListRow['rentDebt'];
-					$addedAmount=$rentDebt+($amount/$count);
-					$sqlupdate = "UPDATE users SET rentDebt='$addedAmount' WHERE userID='$userID'";
+					$addedAmount=($amount/$count);
+					$sqlupdate = "INSERT INTO debts (debtID,userID,amount,details,isPaid) VALUES ('NULL','$userID','$addedAmount','$details','0')";
 					$result=mysqli_query($connect, $sqlupdate);
 
 				}

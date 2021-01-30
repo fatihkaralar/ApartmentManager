@@ -13,16 +13,18 @@ if ($_SESSION['type']!="admin") {
 <body>
 	<?php 
 	$userID=$_GET['userID'];
-	$userSql="SELECT rentDebt FROM users WHERE userID='$userID'";
-	$userQuery=mysqli_query($connect,$userSql);
-	$userRow=mysqli_fetch_assoc($userQuery);
+	$debtSql="SELECT amount FROM debts WHERE userID='$userID' AND isPaid=0";
+	$debtQuery=mysqli_query($connect,$debtSql);
+	$debtRow=mysqli_fetch_assoc($debtQuery);
 
 	if ($_GET['removeUser']=="ok"&&$_SESSION['type']=="admin") {
             //Only admins can remove a user.
-		if ($userRow['rentDebt']==0) { 
+		if (!isset($debtRow['amount'])) { 
 			// Users with debts cannot be removed
 			$removeHistorySql="DELETE FROM paymenthistory WHERE userID='$userID'";
 			$removeHistoryQuery=mysqli_query($connect,$removeHistorySql);
+			$removeDebtSql="DELETE FROM debts WHERE userID='$userID'";
+			$removeDebtQuery=mysqli_query($connect,$removeDebtSql);
 			$removeSql="DELETE FROM users WHERE userID='$userID'";
 			$removeQuery=mysqli_query($connect,$removeSql);
 			header('location:userList.php?isRemoved=true');

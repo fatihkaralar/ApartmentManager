@@ -27,14 +27,28 @@ if (!isset($_SESSION['type'])) { //If someone access the user homepage without s
 	$name=ucfirst($row['name']); //The first character of name of the user will be uppercase
 	$surname=strtoupper($row['surname']); //The surname of user will be uppercase.
 	$userID=$row['userID'];
+	$debtSql="SELECT sum(amount) AS total FROM debts WHERE userID='$userID' AND isPaid=0";
+	$debtQuery=mysqli_query($connect,$debtSql);
+	$debtRow=mysqli_fetch_assoc($debtQuery);
+
+
+
+
 	?>
 	
 	<header> User: <?php echo $name." ".$surname;  //It prints the name of logged admin.?>
-	<i><h5>Outstanding debt: <?php echo $row['rentDebt']."₺"; ?></h5></i>
+	<i><h5>Outstanding debt: <?php 
+	if (!isset($debtRow['total'])) {
+		echo "0₺";
+	}else{
+
+		echo $debtRow['total']."₺";
+	} ?></h5></i>
 	<img src="../Logos/logo.png" width="100px" height="100px">
 	<a href="../options.php?userID=<?php echo $userID ?>" title="Edit Informations"> <input id="options" name='options' type="image" src="../Logos/options.png" width="30px" height="30px"> </a>
 	<a href="../Login/userLogout.php" title="Logout"><input id="logout" name='logout' type="image" src="../Logos/logout.png" width="40px" height="48px"></a>
 	<a href="expensesList.php?userID=<?php echo $userID ?>" title="Show expenses"><input id="expenses" type="image" name="expenses" src="../Logos/expenses.png" width="27px" height="30px"></a>
+	<a href="paymentHistory.php?userID=<?php echo $userID ?>" title="Payment History"><input id="history" type="image" name="history" src="../Logos/history.png" width="35px" height="35px"></a>
 </header>
 <div class="row no-gutters" >
 	<div class="col-md-6 no-gutters">
@@ -43,7 +57,7 @@ if (!isset($_SESSION['type'])) { //If someone access the user homepage without s
 	</div>
 	<div class="col-md-6 no-gutters">
 
-		<div class="rightside d-flex justify-content-center align-items-center"><a href="../UserOperations/paymentTransactions.php"><h1 style="color: white;">Payment Transactions</h1></a></div>
+		<div class="rightside d-flex justify-content-center align-items-center"><a href="../UserOperations/showDebts.php"><h1 style="color: white;">Show Debts</h1></a></div>
 
 	</div>
 

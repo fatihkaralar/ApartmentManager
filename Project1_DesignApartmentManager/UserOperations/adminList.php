@@ -53,7 +53,7 @@ if ($_SESSION['type']!="user") {
       <th> E- mail</th>
       <th>Phone Number</th>
       <th>Send Mail</th>
-     
+      
     </tr>
     <?php 
     $adminsSql="SELECT*FROM admins";
@@ -69,7 +69,7 @@ if ($_SESSION['type']!="user") {
            <td><?php echo $adminsRow['mail']; ?></td>
            <td><?php echo $adminsRow['phoneNumber']; ?></td>
            <td><a href="mailto:<?php echo $adminsRow['mail']?>"> <button id="mailButton">Send Mail</button></a></td>
-      
+           
 
 
 
