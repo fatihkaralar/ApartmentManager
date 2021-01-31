@@ -104,12 +104,14 @@ if ($_GET['error']=="debtError") { //If a user have debt,then the method prints 
            if (!isset($debtRow['total'])) {
             echo "0₺";
           }else{
-           echo $debtRow['total']."₺";
+            $totalDebt=number_format($debtRow['total'],4,'.','');
+           echo $totalDebt."₺";
          } ?></td>
          <td><?php   if (!isset($paidDebtRow['total'])) {
           echo "0₺";
         }else{
-         echo $paidDebtRow['total']."₺";
+          $paidDebtTotal=number_format($paidDebtRow['total'],4,'.','');
+         echo $paidDebtTotal."₺";
        } ?> </td>
        <td><a href="editUser.php?userID=<?php echo $residentRow['userID'] ?>"><button id="editButton">Edit User</button></a> </td>
        <td><a href="mailto:<?php echo $residentRow['mail']?>"> <button id="mailButton">Send Mail</button></a></td>
