@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost
--- Üretim Zamanı: 20 Ara 2020, 15:53:48
+-- Üretim Zamanı: 30 Oca 2021, 15:15:32
 -- Sunucu sürümü: 8.0.17
 -- PHP Sürümü: 7.3.10
 
@@ -42,8 +42,72 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`adminID`, `username`, `password`, `name`, `mail`, `phoneNumber`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Fatih KARALAR', 'admin@gmail.com', '05551919191'),
-(2, 'admin2', 'c84258e9c39059a89ab77d846ddab909', 'Mehmet KARALAR', 'mehmet@hotmail.com', '6545231895');
+(1, 'admin', '5558c735c7c8205d04666df5c8dd452d', 'Fatih KARALAR', 'admin@gmail.com', '5511812340'),
+(2, 'admin2', '5558c735c7c8205d04666df5c8dd452d', 'Mehmet KARALAR', 'mehmet@hotmail.com', '5511812351');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `debts`
+--
+
+CREATE TABLE `debts` (
+  `debtID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `amount` float NOT NULL,
+  `details` text COLLATE utf8mb4_turkish_ci NOT NULL,
+  `isPaid` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;
+
+--
+-- Tablo döküm verisi `debts`
+--
+
+INSERT INTO `debts` (`debtID`, `userID`, `amount`, `details`, `isPaid`) VALUES
+(82, 82, 100, 'su giderleri', 0),
+(84, 88, 100, 'su giderleri', 0),
+(85, 89, 100, 'su giderleri', 0),
+(86, 90, 100, 'su giderleri', 1),
+(87, 91, 100, 'su giderleri', 0),
+(89, 96, 100, 'su giderleri', 0),
+(90, 97, 100, 'su giderleri', 0),
+(91, 101, 100, 'su giderleri', 0),
+(92, 103, 100, 'su giderleri', 0),
+(93, 104, 100, 'su giderleri', 0),
+(94, 109, 100, 'su giderleri', 0),
+(98, 82, 200, 'Su giderleri', 0),
+(100, 88, 200, 'Su giderleri', 0),
+(101, 89, 200, 'Su giderleri', 0),
+(102, 90, 200, 'Su giderleri', 1),
+(103, 91, 200, 'Su giderleri', 0),
+(105, 96, 200, 'Su giderleri', 0),
+(106, 97, 200, 'Su giderleri', 0),
+(107, 101, 200, 'Su giderleri', 0),
+(108, 103, 200, 'Su giderleri', 0),
+(109, 104, 200, 'Su giderleri', 0),
+(110, 109, 200, 'Su giderleri', 0),
+(114, 82, 100, 'Aidat', 0),
+(116, 88, 100, 'Aidat', 0),
+(117, 89, 100, 'Aidat', 0),
+(118, 90, 100, 'Aidat', 1),
+(119, 91, 100, 'Aidat', 0),
+(121, 96, 100, 'Aidat', 0),
+(122, 97, 100, 'Aidat', 0),
+(123, 101, 100, 'Aidat', 0),
+(124, 103, 100, 'Aidat', 0),
+(125, 104, 100, 'Aidat', 0),
+(126, 109, 100, 'Aidat', 0),
+(130, 82, 100, 'test', 0),
+(132, 88, 100, 'test', 0),
+(133, 89, 100, 'test', 0),
+(134, 90, 100, 'test', 1),
+(135, 91, 100, 'test', 0),
+(137, 96, 100, 'test', 0),
+(138, 97, 100, 'test', 0),
+(139, 101, 100, 'test', 0),
+(140, 103, 100, 'test', 0),
+(141, 104, 100, 'test', 0),
+(142, 109, 100, 'test', 0);
 
 -- --------------------------------------------------------
 
@@ -64,13 +128,12 @@ CREATE TABLE `expenses` (
 --
 
 INSERT INTO `expenses` (`expenseID`, `amount`, `details`, `adminID`, `currentdate`) VALUES
-(2, 320, 'elevator maintenance', 1, '2020/12/20'),
-(3, 160, 'Monthly Debt', 2, '2020/12/20'),
-(4, 1350, 'Camera Maintenance', 2, '2020/12/20'),
-(5, 125, 'Electrical infrastructure maintenance', 2, '2020/12/20'),
-(6, 3600, '\r\nBuilding maintenance and repair.', 1, '2020/12/20'),
-(7, 170, 'Other', 1, '2020/12/20'),
-(8, 180, 'test', 1, '2020/12/20');
+(49, 1600, 'Electric expenses\r\n', 1, '2021/01/29'),
+(50, 1600, 'electric expense', 1, '2021/01/29'),
+(51, 1600, 'su giderleri', 1, '2021/01/29'),
+(52, 3200, 'Su giderleri', 1, '2021/01/29'),
+(53, 1600, 'Aidat', 1, '2021/01/29'),
+(54, 1600, 'test', 1, '2021/01/29');
 
 -- --------------------------------------------------------
 
@@ -81,10 +144,21 @@ INSERT INTO `expenses` (`expenseID`, `amount`, `details`, `adminID`, `currentdat
 CREATE TABLE `paymenthistory` (
   `paymentID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
+  `debtID` int(11) NOT NULL,
   `amount` float NOT NULL,
-  `date` text COLLATE utf8mb4_turkish_ci NOT NULL,
-  `expenseID` int(11) NOT NULL
+  `details` text COLLATE utf8mb4_turkish_ci NOT NULL,
+  `currentdate` text CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;
+
+--
+-- Tablo döküm verisi `paymenthistory`
+--
+
+INSERT INTO `paymenthistory` (`paymentID`, `userID`, `debtID`, `amount`, `details`, `currentdate`) VALUES
+(122, 90, 134, 100, 'test', '2021/01/30'),
+(123, 90, 86, 100, 'su giderleri', '2021/01/30'),
+(124, 90, 102, 200, 'Su giderleri', '2021/01/30'),
+(125, 90, 118, 100, 'Aidat', '2021/01/30');
 
 -- --------------------------------------------------------
 
@@ -101,7 +175,6 @@ CREATE TABLE `users` (
   `aptNo` int(11) NOT NULL,
   `status` text CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
   `mail` text CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
-  `rentDebt` float NOT NULL,
   `phoneNumber` text CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
@@ -109,25 +182,18 @@ CREATE TABLE `users` (
 -- Tablo döküm verisi `users`
 --
 
-INSERT INTO `users` (`userID`, `username`, `password`, `name`, `surname`, `aptNo`, `status`, `mail`, `rentDebt`, `phoneNumber`) VALUES
-(71, 'bulentkaralar', '4589b842babc2d8be93358e8fed692f7', 'bulent', 'karalar', 55, 'Tenant', 'bulentkaralar@hotmail.com', 381.632, 'NULL'),
-(72, 'mehmetkarakas', 'fbff7e8a9de31cd958596eea364ac3ac', 'Mehmet', 'karakas', 6, 'Tenant', 'mehmetkarakas@hotmail.com', 381.632, 'NULL'),
-(73, 'ozanyavuz', 'd4e520d9130bddccba586603dd622562', 'ozan', 'yavuz', 8, 'Owner', 'oznyvz_02@hotmail.com', 381.632, 'NULL'),
-(75, 'furkanatabak', '176cf3f913523e4ecae398206527ec31', 'Furkan', 'Atabak', 10, 'Tenant', 'frknatabak@gmail.com', 381.632, 'NULL'),
-(76, 'suatkarakeci', '4ce86b2f8fb5e0987e3aab8755d999c4', 'Suat', 'Karakeci', 11, 'Tenant', 'suatkarakeci@outlook.com.tr', 381.632, 'NULL'),
-(78, 'eminedalgic', '6536708fdb56c9147ed342d28ab18a1d', 'Emine', 'dalgic', 12, 'Tenant', 'eminedlgc@hotmail.com.tr', 381.632, 'NULL'),
-(82, 'fatihkaralar', '4589b842babc2d8be93358e8fed692f7', 'Fatih', 'KARALar', 21, 'Owner', 'fatih_ralarak@hotmail.com', 381.632, 'NULL'),
-(84, 'eyupdanis', '257ffa69697c2d5144f0b4b76b51ae95', 'Eyup', 'Danis', 17, 'Tenant', 'eyup_danis@hotmail.com', 381.632, 'NULL'),
-(85, 'mehmetkaralar', '4589b842babc2d8be93358e8fed692f7', 'Mehmet', 'KARALAR', 1, 'Owner', 'mehmetkaralar@gmail.com', 381.632, 'NULL'),
-(86, 'erkamatabak', '176cf3f913523e4ecae398206527ec31', 'Erkam', 'Atabak', 2, 'Owner', 'erkamatabak@gmail.com', 381.632, 'NULL'),
-(87, 'cumaliozdemir', '4f20db56517dd3851416a9434e55cbc1', 'Cumali', 'Ozdemir', 5, 'Owner', 'cumaliozdemir_07@hotmail.com', 381.632, 'NULL'),
-(88, 'recaisezgin', 'c2c5f3350bc3857219a8b943cf0463ad', 'recai', 'sezgin', 28, 'Owner', 'recaiszgn@gmail.com', 381.632, 'NULL'),
-(89, 'ceydaguler', '8a4dc1f133d036c57f7ec5aefcdf1b65', 'Ceyda', 'guler', 33, 'Tenant', 'cydaguler@hotmail.com', 381.632, 'NULL'),
-(90, 'sedatyilmaz', 'bc07f07a9bfb5f5cdc16d27da9b50420', 'Sedat', 'yilmaz', 45, 'Owner', 'sedatyilmaz@outlook.com.tr', 381.632, 'NULL'),
-(91, 'ugursavas', 'c083f62d604f6ab0123485012892a401', 'ugur', 'savas', 3, 'Owner', 'ugursvs@outlook.com.tr', 381.632, 'NULL'),
-(95, 'baharkul', '212747dc84369b811b3bd8611c78422f', 'bahar', 'kul', 78, 'Tenant', 'baharkul@hotmail.com.tr', 19.4444, 'NULL'),
-(96, 'necatidagdeviren', '17a1d9e2a1e1c0f80d51b0ba4fb6796f', 'Necati', 'dagdeviren', 100, 'Tenant', 'necatidagdevirent@hotmail.com.tr', 19.4444, 'NULL'),
-(97, 'elanurbicer', 'f0a29c8c399e589492ff5eff5d5b50db', 'elanur', 'bicer', 42, 'Owner', 'elanurbicer@hotmail.com.tr', 19.4444, 'NULL');
+INSERT INTO `users` (`userID`, `username`, `password`, `name`, `surname`, `aptNo`, `status`, `mail`, `phoneNumber`) VALUES
+(82, 'fatihkaralar', 'e6b717f7492c087984f3f2d909fd812d', 'Fatih', 'KARALar', 8, 'Owner', 'fatihralarak@hotmail.com', '5555555555'),
+(88, 'recaisezgin', 'c2c5f3350bc3857219a8b943cf0463ad', 'recai', 'sezgin', 16, 'Owner', 'recaiszgn@gmail.com', 'NULL'),
+(89, 'ceydaguler', '55bdd028d1a5cef528961df2d8d45300', 'Ceyda', 'guler', 15, 'Tenant', 'cydaguler@hotmail.com', '5458982029'),
+(90, 'sedatyilmaz', '5558c735c7c8205d04666df5c8dd452d', 'Sedat', 'yilmaz', 13, 'Tenant', 'sedatyilmaz@outlook.com.tr', '5558982645'),
+(91, 'ugursavas', 'a49007137f2c3e2cc5d7c375e1344fda', 'ugur', 'savas', 17, 'Owner', 'ugursavas@outlook.com.tr', '5458882005'),
+(96, 'necatidagdeviren', '17a1d9e2a1e1c0f80d51b0ba4fb6796f', 'Necati', 'dagdeviren', 5, 'Owner', 'necatidagdevirent@hotmail.com.tr', 'NULL'),
+(97, 'elanurbicer', 'f0a29c8c399e589492ff5eff5d5b50db', 'elanur', 'bicer', 14, 'Owner', 'elanurbicer@hotmail.com.tr', 'NULL'),
+(101, 'fulyatokgezen', 'ca8314ddfe1054601bce0022a8282e73', 'fulya', 'tokgezen', 9, 'Tenant', 'fulyatokgezen@hotmail.com', 'NULL'),
+(103, 'aykutgunpinar', '36ffe4a787992ac589d9db22576c9cfb', 'Aykut', 'gunpinar', 1, 'Owner', 'aykutgnpnr@outlook.com.tr', 'NULL'),
+(104, 'vecihihurkus', '67d1fda1f79b027d20bf5875246536d3', 'vecihi', 'hurkus', 6, 'Owner', 'vecihihurkus@gmail.com.tr', 'NULL'),
+(109, 'testtest', '098f6bcd4621d373cade4e832627b4f6', 'test', 'test', 10, 'Owner', 'test@gmail.com', 'NULL');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -138,6 +204,13 @@ INSERT INTO `users` (`userID`, `username`, `password`, `name`, `surname`, `aptNo
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`adminID`);
+
+--
+-- Tablo için indeksler `debts`
+--
+ALTER TABLE `debts`
+  ADD PRIMARY KEY (`debtID`),
+  ADD KEY `userID` (`userID`);
 
 --
 -- Tablo için indeksler `expenses`
@@ -151,8 +224,8 @@ ALTER TABLE `expenses`
 --
 ALTER TABLE `paymenthistory`
   ADD PRIMARY KEY (`paymentID`),
-  ADD KEY `userID` (`userID`,`expenseID`),
-  ADD KEY `expenseID` (`expenseID`);
+  ADD KEY `userID` (`userID`),
+  ADD KEY `debtID` (`debtID`);
 
 --
 -- Tablo için indeksler `users`
@@ -171,26 +244,38 @@ ALTER TABLE `admins`
   MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- Tablo için AUTO_INCREMENT değeri `debts`
+--
+ALTER TABLE `debts`
+  MODIFY `debtID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `expenseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `expenseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `paymenthistory`
 --
 ALTER TABLE `paymenthistory`
-  MODIFY `paymentID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `paymentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar
 --
+
+--
+-- Tablo kısıtlamaları `debts`
+--
+ALTER TABLE `debts`
+  ADD CONSTRAINT `debts_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Tablo kısıtlamaları `expenses`
@@ -202,8 +287,8 @@ ALTER TABLE `expenses`
 -- Tablo kısıtlamaları `paymenthistory`
 --
 ALTER TABLE `paymenthistory`
-  ADD CONSTRAINT `paymenthistory_ibfk_1` FOREIGN KEY (`expenseID`) REFERENCES `expenses` (`expenseID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `paymenthistory_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `paymenthistory_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `paymenthistory_ibfk_3` FOREIGN KEY (`debtID`) REFERENCES `debts` (`debtID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
